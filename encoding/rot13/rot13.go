@@ -8,13 +8,12 @@ type Char interface {
 
 // Rot13 maps a character (byte, rune, int) to it's rot13 equivalent.
 func Rot13[T Char](inp T) (ret T) {
+	ret = inp
 	switch {
 	case 'A' <= inp && inp <= 'Z':
 		ret = (inp-'A'+13)%26 + 'A'
 	case 'a' <= inp && inp <= 'z':
 		ret = (inp-'a'+13)%26 + 'a'
-	default:
-		ret = inp
 	}
 	return
 }

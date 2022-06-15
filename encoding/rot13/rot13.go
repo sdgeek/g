@@ -7,13 +7,14 @@ type Char interface {
 }
 
 // Rot13 maps a character (byte, rune, int) to it's rot13 equivalent.
-func Rot13[inp Char](b inp) inp {
+func Rot13[T Char](inp T) (ret T) {
 	switch {
-	case 'A' <= b && b <= 'Z':
-		return (b-'A'+13)%26 + 'A'
-	case 'a' <= b && b <= 'z':
-		return (b-'a'+13)%26 + 'a'
+	case 'A' <= inp && inp <= 'Z':
+		ret = (inp-'A'+13)%26 + 'A'
+	case 'a' <= inp && inp <= 'z':
+		ret = (inp-'a'+13)%26 + 'a'
 	default:
-		return b
+		ret = inp
 	}
+	return
 }
